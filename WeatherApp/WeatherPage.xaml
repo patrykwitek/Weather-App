@@ -53,16 +53,14 @@
             <Label x:Name="LblHumidity"
                    Grid.Row="1"
                    Grid.Column="0"
-                   HorizontalOptions="Center"
-                   Text="88" />
+                   HorizontalOptions="Center" />
             <Label x:Name="LblTemperature"
                    Grid.Row="0"
                    Grid.Column="1"
                    Grid.RowSpan="2"
                    HorizontalOptions="Center"
                    FontSize="40"
-                   FontAttributes="Bold"
-                   Text="25" />
+                   FontAttributes="Bold" />
 
             <Image Grid.Row="0"
                    Grid.Column="2"
@@ -72,8 +70,7 @@
             <Label x:Name="LblWind"
                    Grid.Row="1"
                    Grid.Column="2"
-                   HorizontalOptions="Center"
-                   Text="88" />
+                   HorizontalOptions="Center" />
         </Grid>
         <CollectionView Grid.Row="4" x:Name="CvWeather" HeightRequest="100">
             <CollectionView.ItemsLayout>
