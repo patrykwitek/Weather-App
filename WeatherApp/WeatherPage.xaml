@@ -14,6 +14,9 @@
                    BorderColor="LightGray">
                 <Label Text="Your location"
                        FontSize="Default"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapLocation" Tapped="TapLocation_Tapped"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <ImageButton Source="search.png"
                          HeightRequest="30"
