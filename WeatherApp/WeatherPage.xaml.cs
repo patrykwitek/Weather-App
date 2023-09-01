@@ -36,6 +36,17 @@ public partial class WeatherPage : ContentPage
 	public async Task GetWeatherDataByLocation(double latitude, double longitude)
 	{
         var result = await ApiService.GetWeather(latitude, longitude);
+        UpdateUI(result);
+    }
+
+    public async Task GetWeatherDataByCityName(string city)
+    {
+        var result = await ApiService.GetWeatherByCityName(city);
+		UpdateUI(result);
+    }
+
+    public void UpdateUI(dynamic result)
+    {
         foreach (var item in result.list)
         {
             WeatherList.Add(item);
@@ -49,4 +60,13 @@ public partial class WeatherPage : ContentPage
         LblWind.Text = result.list[0].wind.speed + "km/h";
         ImgWeatherIcon.Source = result.list[0].weather[0].customIcon + ".png";
     }
+
+    private async void ImageButton_Clicked(object sender, EventArgs e)
+	{
+		var response = await DisplayPromptAsync("", "", "Search", "Cancel", "Search weather by city");
+		if (response is not null)
+		{
+            await GetWeatherDataByCityName(response);
+		}
+	}
 }

@@ -21,7 +21,8 @@
             <ImageButton Source="search.png"
                          HeightRequest="30"
                          WidthRequest="30"
-                         HorizontalOptions="EndAndExpand"/>
+                         HorizontalOptions="EndAndExpand"
+                         Clicked="ImageButton_Clicked"/>
         </StackLayout>
         
         <StackLayout Grid.Row="1"
