@@ -15,23 +15,23 @@
                 <Label Text="Your location"
                        FontSize="Default"/>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="TapLocation" Tapped="TapLocation_Tapped"/>
+                    <TapGestureRecognizer x:Name="CurrentLocation" Tapped="TapCurrentLocationWeather"/>
                 </Frame.GestureRecognizers>
             </Frame>
             <ImageButton Source="search.png"
                          HeightRequest="30"
                          WidthRequest="30"
                          HorizontalOptions="EndAndExpand"
-                         Clicked="ImageButton_Clicked"/>
+                         Clicked="ClickCityWeather"/>
         </StackLayout>
         
         <StackLayout Grid.Row="1"
                      Orientation="Vertical">
-            <Label x:Name="LblCity"
+            <Label x:Name="City"
                    FontSize="40"
                    HorizontalOptions="Center"
                    TextColor="Gray" />
-            <Label x:Name="LblWeatherDescription"
+            <Label x:Name="WeatherDescription"
                    FontSize="Medium"
                    HorizontalOptions="Center"
                    TextColor="SlateGray" />
@@ -53,11 +53,11 @@
                    HorizontalOptions="Center"
                    HeightRequest="25"
                    Source="humidity.png" />
-            <Label x:Name="LblHumidity"
+            <Label x:Name="Humidity"
                    Grid.Row="1"
                    Grid.Column="0"
                    HorizontalOptions="Center" />
-            <Label x:Name="LblTemperature"
+            <Label x:Name="Temperature"
                    Grid.Row="0"
                    Grid.Column="1"
                    Grid.RowSpan="2"
@@ -70,7 +70,7 @@
                    HorizontalOptions="Center"
                    HeightRequest="25"
                    Source="wind.png" />
-            <Label x:Name="LblWind"
+            <Label x:Name="Wind"
                    Grid.Row="1"
                    Grid.Column="2"
                    HorizontalOptions="Center" />

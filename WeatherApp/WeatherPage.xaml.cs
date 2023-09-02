@@ -1,69 +1,71 @@
+using WeatherApp.Helpers;
 using WeatherApp.Services;
 
 namespace WeatherApp;
 
 public partial class WeatherPage : ContentPage
 {
-	public List<Models.List> WeatherList;
-	private double latitude;
-	private double longitude;
+	public List<Models.List> WeatherData;
+	private double Latitude;
+	private double Longitude;
+
 	public WeatherPage()
 	{
 		InitializeComponent();
-		WeatherList = new List<Models.List>();
+		WeatherData = new List<Models.List>();
 	}
 
 	protected async override void OnAppearing()
 	{
 		base.OnAppearing();
 		await GetLocation();
-        await GetWeatherDataByLocation(latitude, longitude);
+        await GetWeatherDataByLocation(Latitude, Longitude);
     }
 
 	public async Task GetLocation()
 	{
 		Location location = await Geolocation.GetLocationAsync();
-		latitude = location.Latitude;
-		longitude = location.Longitude;
-	}
-
-	private async void TapLocation_Tapped(object sender, EventArgs e)
-	{
-		await GetLocation();
-		await GetWeatherDataByLocation(latitude, longitude);
+		Latitude = location.Latitude;
+		Longitude = location.Longitude;
 	}
 
 	public async Task GetWeatherDataByLocation(double latitude, double longitude)
 	{
-        var result = await ApiService.GetWeather(latitude, longitude);
-        UpdateUI(result);
+        var result = await WeatherService.GetWeather(latitude, longitude);
+        SetWeatherData(result);
     }
 
     public async Task GetWeatherDataByCityName(string city)
     {
-        var result = await ApiService.GetWeatherByCityName(city);
-		UpdateUI(result);
+        var result = await WeatherService.GetWeatherByCityName(city);
+		SetWeatherData(result);
     }
 
-    public void UpdateUI(dynamic result)
+    public void SetWeatherData(dynamic result)
     {
-        foreach (var item in result.list)
+        foreach(var item in result.list)
         {
-            WeatherList.Add(item);
+            WeatherData.Add(item);
         }
-        CvWeather.ItemsSource = WeatherList;
+        CvWeather.ItemsSource = WeatherData;
 
-        LblCity.Text = result.city.name;
-        LblWeatherDescription.Text = result.list[0].weather[0].description;
-        LblTemperature.Text = result.list[0].main.temperature + "°C";
-        LblHumidity.Text = result.list[0].main.humidity + "%";
-        LblWind.Text = result.list[0].wind.speed + "km/h";
-        ImgWeatherIcon.Source = result.list[0].weather[0].customIcon + ".png";
+        City.Text = result.city.name;
+        WeatherDescription.Text = result.list[0].weather[0].description;
+        Temperature.Text = result.list[0].main.temperature + ConstantHelper.CelciusDegrees;
+        Humidity.Text = result.list[0].main.humidity + ConstantHelper.Percent;
+        Wind.Text = result.list[0].wind.speed + ConstantHelper.KilometersPerHour;
+        ImgWeatherIcon.Source = result.list[0].weather[0].customIcon + ConstantHelper.FormatFilePNG;
     }
 
-    private async void ImageButton_Clicked(object sender, EventArgs e)
+    private async void TapCurrentLocationWeather(object sender, EventArgs e)
+    {
+        await GetLocation();
+        await GetWeatherDataByLocation(Latitude, Longitude);
+    }
+
+    private async void ClickCityWeather(object sender, EventArgs e)
 	{
-		var response = await DisplayPromptAsync("", "", "Search", "Cancel", "Search weather by city");
+		var response = await DisplayPromptAsync("", "", ConstantHelper.CityPopupAccept, ConstantHelper.CityPopupCancel, ConstantHelper.CityPopupContent);
 		if (response is not null)
 		{
             await GetWeatherDataByCityName(response);
