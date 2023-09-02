@@ -9,7 +9,7 @@
 
 <a name="preview"></a>
 ## 1. Preview
-![WeatherAppPreview](https://github.com/patrykwitek/WeatherApp/assets/117681023/a46c7104-c29c-45d4-8e21-87b3043a1f1f)
+<img src="https://github.com/patrykwitek/WeatherApp/assets/117681023/a46c7104-c29c-45d4-8e21-87b3043a1f1f" width="30%" height="90%">
 
 <a name="application-description"></a>
 ## 2. Application Description
