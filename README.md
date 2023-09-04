@@ -28,7 +28,7 @@ https://github.com/patrykwitek/WeatherApp/assets/117681023/1a04d9ea-482e-4ce8-aa
 
 The image below describes graphical interface of the application
 
-<img src="https://github.com/patrykwitek/WeatherApp/assets/117681023/2ffb1ee1-3b66-4268-bc9b-a7d46fb48e0b" width="30%" height="90%">
+<img src="https://github.com/patrykwitek/WeatherApp/assets/117681023/2ffb1ee1-3b66-4268-bc9b-a7d46fb48e0b" width="40%" height="90%">
    
 <a name="by-city"></a>
 ## 4. Search weather by the city 🌄
